@@ -77,7 +77,6 @@ export  default {
     },
     watch: {
         status(newValue) {
-            console.log(newValue)
             if (typeof newValue === "undefined" || newValue === '') {
                 this.edit = false
             }
