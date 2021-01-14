@@ -37,7 +37,7 @@ export  default {
         }
     },
     methods: {
-        update(val) {
+        update() {
             this.$emit('update', this.car.id, {
                 manufacturer: this.manufacturer,
                 model: this.model,
