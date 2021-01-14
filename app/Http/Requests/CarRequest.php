@@ -26,7 +26,7 @@ class CarRequest extends FormRequest
         return [
             'manufacturer' => 'required|string',
             'model' => 'required|string',
-            'color' => 'string',
+            'color' => '',
             'seatsCount' => 'required|min:1|max:10',
         ];
     }
