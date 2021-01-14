@@ -13,7 +13,14 @@
 
 ## Run
 
+### Seed test data
+`vendor/bin/sail artisan db:seed`
+
+### Run backend
 `vendor/bin/sail up`
+
+### Run frontend
+`npm run watch`
 
 ## Run tests
 
