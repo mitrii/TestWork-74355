@@ -18,10 +18,11 @@
             <tbody>
             <car-component
                 v-for="car in cars"
-                v-bind="car"
+                :car="car"
                 :key="car.id"
                 @update="update"
                 @destroy="destroy"
+                :status="updateStatuses[car.id]"
             />
             <car-create-component @create="create" :status="createStatus"/>
             </tbody>
@@ -32,6 +33,7 @@
 <script>
 import CarComponent from "./components/CarComponent";
 import CarCreateComponent from "./components/CarCreateComponent";
+import Vue from 'vue'
 
 export default {
     name: "App.vue",
@@ -40,7 +42,8 @@ export default {
     data() {
         return {
             cars: [],
-            createStatus: ''
+            createStatus: '',
+            updateStatuses: {}
         }
     },
     methods: {
@@ -66,11 +69,16 @@ export default {
                 });
         },
         update(id, data) {
+            Vue.set(this.updateStatuses, id, 'update')
             window.axios.put(`/api/car/${id}`, data)
                 .then(response => {
                     const index = this.cars.findIndex(car => car.id === id);
-                    this.cars[index] = response.data
-                });
+                    Vue.set(this.cars, index, response.data)
+                    Vue.set(this.updateStatuses, id, '')
+                })
+                .catch(() => {
+                    Vue.set(this.updateStatuses, id, 'error')
+                })
         },
         destroy(id) {
             window.axios.delete(`/api/car/${id}`)

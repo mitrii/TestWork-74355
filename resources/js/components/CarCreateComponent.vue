@@ -6,7 +6,7 @@
         <td><input v-model="color" name="color" type="text" /></td>
         <td><input v-model="seatsCount" name="seatsCount" type="number" /></td>
     <td>
-      <button class="btn btn-primary" @click="create">Добавить</button>
+      <button class="btn btn-success" @click="create">Добавить</button>
     </td>
   </tr>
 </template>
